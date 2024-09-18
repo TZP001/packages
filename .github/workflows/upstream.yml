@@ -34,10 +34,6 @@ jobs:
       uses: actions/checkout@main
       with:
         fetch-depth: 0
-
-    - uses: de-vri-es/setup-git-credentials@v2
-      with:
-        credentials: https://tzp001:${{ secrets.TOKEN__PACKAGES_TZP001 }}@github.com/
     
     - name: Set git identity
       run : |
