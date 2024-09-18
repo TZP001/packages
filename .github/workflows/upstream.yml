@@ -37,13 +37,14 @@ jobs:
 
     - uses: de-vri-es/setup-git-credentials@v2
       with:
-        credentials: https://tzp001:${{ secrets.TOKEN__PACKAGES_TZP001 }}@github.com/
+        credentials: https://tzp001:${{ secrets.TOKEN_PACKAGES_TZP001 }}@github.com/
     
     - name: Set git identity
       run : |
         git config --global user.email "145636057+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         sudo timedatectl set-timezone "Asia/Shanghai"
+        
     - name: Syn upstream
       run: |
         shopt -s extglob
