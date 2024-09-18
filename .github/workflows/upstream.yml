@@ -37,7 +37,7 @@ jobs:
 
     - uses: de-vri-es/setup-git-credentials@v2
       with:
-        credentials: https://tzp001:${{ secrets.TOKEN_TZP001 }}@github.com/
+        credentials: https://tzp001:${{ secrets.TOKEN__PACKAGES_TZP001 }}@github.com/
     
     - name: Set git identity
       run : |
@@ -82,10 +82,9 @@ jobs:
             cd $rootdir
         }
 
-        （git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" luci-app-timecontrol \
+        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" luci-app-timecontrol \
         automount 
-        ）
-
+        
     - name: Apply
       run: |
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
