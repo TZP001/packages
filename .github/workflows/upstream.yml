@@ -1,0 +1,109 @@
+#
+# This is free software, lisence use MIT.
+# 
+# 
+# <https://github.com/kiddin9/openwrt-packages>
+#
+
+name: Merge-upstream
+on:
+  push:
+    paths:
+      - '.github/workflows/upstream.yml'
+      - '.gitignore'
+      - '.github/diy/**'
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'ssh'
+        required: false
+        default: 'true'
+  watch:
+    types: started
+  repository_dispatch:
+
+jobs:
+  merge:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: Ubuntu-22.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+      with:
+        fetch-depth: 0
+
+    - uses: de-vri-es/setup-git-credentials@v2
+      with:
+        credentials: https://tzp001:${{ secrets.TOKEN_TZP001 }}@github.com/
+    
+    - name: Set git identity
+      run : |
+        git config --global user.email "145636057+github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        sudo timedatectl set-timezone "Asia/Shanghai"
+    - name: Syn upstream
+      run: |
+        shopt -s extglob
+        set +e
+        git rm -r --cache * >/dev/null 2>&1 &
+        rm -rf `find ./* -maxdepth 0 -type d ! -name ".github/diy"` >/dev/null 2>&1
+        function git_clone() {
+            git clone --depth 1 $1 $2
+            if [ "$?" != 0 ]; then
+                echo "error on $1"
+                pid="$( ps -q $$ )"
+                kill $pid
+            fi
+        }
+
+        function git_sparse_clone() {
+            trap 'rm -rf "$tmpdir"' EXIT
+            branch="$1" curl="$2" && shift 2
+            rootdir="$PWD"
+            tmpdir="$(mktemp -d)" || exit 1
+            if [ ${#branch} -lt 10 ]; then
+                git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+                cd "$tmpdir"
+            else
+                git clone --filter=blob:none --sparse "$curl" "$tmpdir"
+                cd "$tmpdir"
+                git checkout $branch
+            fi
+            if [ "$?" != 0 ]; then
+                echo "error on $curl"
+                exit 1
+            fi
+            git sparse-checkout init --cone
+            git sparse-checkout set "$@"
+            mv -n $@ $rootdir/ || true
+            cd $rootdir
+        }
+
+        （git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" luci-app-timecontrol \
+        automount 
+        ）
+
+    - name: Apply
+      run: |
+        Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
+        git add .
+        git commit -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(date +%Y-%m-%d" "%H:%M:%S)"
+        for pkg in $(git diff-tree --no-commit-id --name-only HEAD); do
+          if [ "$(grep "PKG_RELEASE" $pkg/Makefile)" ]; then
+            sed -i "s/PKG_RELEASE:=.*/PKG_RELEASE:=$(git rev-list --count master $pkg)/" $pkg/Makefile || true
+          fi
+        done
+        git reset --soft HEAD^
+        git add .
+        git commit -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(date +%Y-%m-%d" "%H:%M:%S)"
+        git push -f
+
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      continue-on-error: true
+      with:
+        retain_days: 1
+        keep_minimum_runs: 3
