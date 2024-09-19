@@ -68,6 +68,7 @@ jobs:
             if [ ${#branch} -lt 10 ]; then
                 git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
                 cd "$tmpdir"
+                echo "456456546"
             else
                 git clone --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
                 cd "$tmpdir"
@@ -85,7 +86,7 @@ jobs:
 
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" luci-app-timecontrol \
         automount
-        git_sparse_clone main "ttps://github.com/lwb1978/openwrt-gecoosac" gecoosac luci-app-gecoosac
+        git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" gecoosac luci-app-gecoosac
         
     - name: Apply
       run: |
