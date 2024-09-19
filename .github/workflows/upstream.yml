@@ -69,7 +69,7 @@ jobs:
                 git clone -b "$branch" --depth 1 --filter=blob:none --sparse -- "$curl" "$tmpdir"
                 cd "$tmpdir"
             else
-                git clone --depth 1 --filter=blob:none --sparse -- "$curl" "$tmpdir"
+                git clone --filter=blob:none --sparse -- "$curl" "$tmpdir"
                 cd "$tmpdir"
                 git checkout $branch
             fi
