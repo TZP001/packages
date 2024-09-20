@@ -79,6 +79,9 @@ jobs:
             fi
             git sparse-checkout init --cone
             git sparse-checkout set "$@"
+            if [ "$finaldir" != "" ]; then
+              mkdir -p $rootdir/$finaldir
+            fi
             mv -n $@ $rootdir/$finaldir/ || true
             cd $rootdir
         }
