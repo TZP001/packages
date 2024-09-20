@@ -62,7 +62,7 @@ jobs:
 
         function git_sparse_clone() {
             trap 'rm -rf "$tmpdir"' EXIT
-            branch="$1" curl="$2" finaldir="$3" && shift 2
+            branch="$1" curl="$2" finaldir="$3" && shift 3
             rootdir="$PWD"
             tmpdir="$(mktemp -d)" || exit 1
             if [ ${#branch} -lt 10 ]; then
@@ -79,7 +79,7 @@ jobs:
             fi
             git sparse-checkout init --cone
             git sparse-checkout set "$@"
-            mv -n $@ $rootdir/$finaldir || true
+            mv -n $@ $rootdir/$finaldir/ || true
             cd $rootdir
         }
 
