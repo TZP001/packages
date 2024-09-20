@@ -62,7 +62,7 @@ jobs:
 
         function git_sparse_clone() {
             trap 'rm -rf "$tmpdir"' EXIT
-            branch="$1" curl="$2" && shift 2
+            branch="$1" curl="$2" finaldir="$3" && shift 2
             rootdir="$PWD"
             tmpdir="$(mktemp -d)" || exit 1
             if [ ${#branch} -lt 10 ]; then
@@ -79,14 +79,19 @@ jobs:
             fi
             git sparse-checkout init --cone
             git sparse-checkout set "$@"
-            mv -n $@ $rootdir/ || true
+            mv -n $@ $rootdir/$finaldir || true
             cd $rootdir
         }
 
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" luci-app-timecontrol \
-        automount
-        git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" gecoosac luci-app-gecoosac
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" package/lean/ipv6-helper
+        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "" luci-app-timecontrol \
+        automount luci-app-partexp
+        git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "" gecoosac luci-app-gecoosac
+        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "" package/lean/ipv6-helper
+
+        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "5G-Modem-Support" fibocom-dial \
+        fibocom_MHI fibocom_QMI_WWAN luci-app-cpe luci-app-gobinetmodem luci-app-hypermodem \
+        luci-app-modem luci-app-pcimodem luci-app-sms-tool luci-app-spdmodem luci-app-usbmodem \
+        quectel_Gobinet quectel_MHI quectel_QMI_WWAN quectel_SRPD_PCIE quectel_cm_5G rooter sendat sms-tool
         
     - name: Apply
       run: |
