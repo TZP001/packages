@@ -90,7 +90,7 @@ jobs:
         git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "Autoconfig" package/lean/autosamba
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Accesscontrol" luci-app-timecontrol luci-app-accesscontrol-plus
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-zerotier luci-app-aliddns \
-        luci-app-ddnsto luci-app-ddns luci-app-tencentddns
+        luci-app-ddnsto luci-app-ddns luci-app-tencentddns ddnsto luci-app-ddns-go
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Disktool" luci-app-partexp
 
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
