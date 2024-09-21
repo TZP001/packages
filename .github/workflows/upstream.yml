@@ -96,7 +96,7 @@ jobs:
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "" package/lean/ipv6-helper
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Unblockmusic" UnblockNeteaseMusic-Go \
-        UnblockNeteaseMusic luci-app-unblockneteasemusic luci-app-unblockmusic
+        UnblockNeteaseMusic luci-app-unblockneteasemusic luci-app-unblockmusic upx upx-static
 
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Docker" luci-app-dockerman dockerd
 
