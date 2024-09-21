@@ -86,8 +86,9 @@ jobs:
             cd $rootdir
         }
 
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "" luci-app-timecontrol \
-        automount luci-app-partexp
+        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "" automount luci-app-partexp
+        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Accesscontrol" luci-app-timecontrol \
+        luci-app-accesscontrol luci-app-accesscontrol-plus
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "" package/lean/ipv6-helper
 
