@@ -1,5 +1,5 @@
 --- a/automount/Makefile
-+++ b/automount/Makefile
++++ b/Autoconfig/automount/Makefile
 @@ -17,8 +17,8 @@ include $(INCLUDE_DIR)/package.mk
  define Package/automount
    TITLE:=Mount autoconfig hotplug script.
