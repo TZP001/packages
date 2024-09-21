@@ -1,5 +1,5 @@
 ## 主要收集自用的package，未经验证过，但看起来有可玩性的也会收录，但会标明
-[软件主要来源](https://github.com/kiddin9/openwrt-packages/)（为了方便，这里有的我就不会从源仓库获取，而且kiddin9大佬有些还打了补丁）
+[软件主要来源](https://github.com/kiddin9/openwrt-packages/)（为了方便，这里有的我就不会从源仓库获取，而且[kiddin9](https://github.com/kiddin9)大佬有些还打了补丁）
 
 ### 备注
 有些开源软件，作者开发时并未留下个人信息，故来源可能弄错，若错了，请同志们帮忙指正！
