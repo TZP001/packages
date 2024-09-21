@@ -87,8 +87,7 @@ jobs:
         }
 
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Autoconfig" luci-app-partexp
-        git_sparse_clone master "https://github.com/kiddin9/openwrt" "Autoconfig" automount
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "Autoconfig" package/lean/autosamba
+        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "Autoconfig" package/lean/autosamba package/lean/automount
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Accesscontrol" luci-app-timecontrol luci-app-accesscontrol-plus
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-zerotier luci-app-aliddns \
         luci-app-ddnsto luci-app-ddns luci-app-tencentddns ddnsto luci-app-ddns-go ddns-go
