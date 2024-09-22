@@ -8,6 +8,7 @@
 </div>
 
 ## 收集自用的package
+针对的是istoreos，目前还没适配成功
 主要收集自用的插件，那些我用不到和觉得不好用的插件不会收录，有些有可玩性的插件也会收录。<br>如果想收录其它插件的朋友，请自己fork仓库，然后自己添加自己想要的插件。<br>
 [软件主要来源](https://github.com/kiddin9/openwrt-packages/)（为了方便，这里有的我就不会从源仓库获取，而且[kiddin9](https://github.com/kiddin9)大佬有些还打了补丁）
 
