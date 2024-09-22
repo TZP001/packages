@@ -86,17 +86,13 @@ jobs:
             cd $rootdir
         }
 
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "Autoconfig" package/lean/autosamba package/lean/automount
+ 
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Accesscontrol" luci-app-timecontrol luci-app-accesscontrol-plus
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-zerotier luci-app-aliddns \
-        luci-app-ddnsto luci-app-ddns luci-app-tencentddns ddnsto luci-app-ddns-go ddns-go
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Disktool" luci-app-partexp
-
+        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-aliddns luci-app-tencentddns 
+    
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "" package/lean/ipv6-helper
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Unblockmusic" UnblockNeteaseMusic-Go \
-        UnblockNeteaseMusic luci-app-unblockneteasemusic luci-app-unblockmusic upx upx-static ucl
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Docker" luci-app-dockerman dockerd
+        UnblockNeteaseMusic luci-app-unblockmusic upx upx-static ucl
 
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "5G-Modem-Support" fibocom-dial \
         fibocom_MHI fibocom_QMI_WWAN luci-app-cpe luci-app-gobinetmodem luci-app-hypermodem \
