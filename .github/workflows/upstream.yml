@@ -119,7 +119,7 @@ jobs:
         quectel_Gobinet quectel_MHI quectel_QMI_WWAN quectel_SRPD_PCIE quectel_cm_5G rooter sendat sms-tool
         ) &
         (
-        git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash 
+        git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
         git_sparse_clone master "https://github.com/xiaorouji/openwrt-passwall2" "HelloWorld" luci-app-passwall2
         )
         
