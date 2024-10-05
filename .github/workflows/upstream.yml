@@ -62,6 +62,16 @@ jobs:
 
         function git_sparse_clone() {
             trap 'rm -rf "$tmpdir"' EXIT
+            #!/bin/sh
+ 
+            REMOTE_URL="$2"
+             
+            if git ls-remote "$REMOTE_URL" > /dev/null 2>&1; then
+                echo "远程仓库存在。"
+            else
+                echo "远程仓库不存在或无法访问。"
+                return
+            fi
             branch="$1" curl="$2" finaldir="$3" && shift 3
             rootdir="$PWD"
             tmpdir="$(mktemp -d)" || exit 1
