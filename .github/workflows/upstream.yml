@@ -88,7 +88,7 @@ jobs:
                 exit 1
             fi
             git sparse-checkout init --cone
-            if [[ "$1" == "*" ]]; then
+            if [ "$1" == "*" ]; then
               all_dir=$(find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s)
               git sparse-checkout set "$all_dir"
             else
