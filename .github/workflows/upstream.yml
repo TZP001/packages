@@ -97,7 +97,7 @@ jobs:
         }
 
         (
-        git_sparse_clone master "https://github.com/coolsnowwolf/lede/" "Autoconfig" package/lean/autosamba package/lean/automount
+        git_sparse_clone master "https://github.com/fw876/helloworld" "HelloWorld" *
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-zerotier luci-app-aliddns \
         luci-app-ddnsto luci-app-ddns luci-app-tencentddns ddnsto luci-app-ddns-go ddns-go
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
@@ -113,10 +113,7 @@ jobs:
         UnblockNeteaseMusic luci-app-unblockmusic upx upx-static ucl luci-app-unblockneteasemusic
         ) &
         (
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "5G-Modem-Support" fibocom-dial \
-        fibocom_MHI fibocom_QMI_WWAN luci-app-cpe luci-app-gobinetmodem luci-app-hypermodem \
-        luci-app-modem luci-app-pcimodem luci-app-sms-tool luci-app-spdmodem luci-app-usbmodem \
-        quectel_Gobinet quectel_MHI quectel_QMI_WWAN quectel_SRPD_PCIE quectel_cm_5G rooter sendat sms-tool
+        git_sparse_clone master "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" *
         ) &
         (
         git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
