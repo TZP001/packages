@@ -103,16 +103,6 @@ jobs:
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         ) &
         (
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Disktool" luci-app-partexp
-        ) &
-        (
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Accesscontrol" luci-app-timecontrol luci-app-accesscontrol-plus
-        ) &
-        (
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "Unblockmusic" UnblockNeteaseMusic-Go \
-        UnblockNeteaseMusic luci-app-unblockmusic upx upx-static ucl luci-app-unblockneteasemusic
-        ) &
-        (
         git_sparse_clone master "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" *
         ) &
         (
@@ -121,9 +111,9 @@ jobs:
         )
         
         
-    - name: Apply patches
-      run: |
-        find ".github/diy/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 -E --forward --no-backup-if-mismatch" --batch 
+    # - name: Apply patches
+    #   run: |
+    #     find ".github/diy/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 -E --forward --no-backup-if-mismatch" --batch 
 
     - name: Apply
       run: |
