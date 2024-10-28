@@ -87,13 +87,13 @@ jobs:
                 echo "error on $curl"
                 exit 1
             fi
-            git sparse-checkout init --cone
             find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" |
             find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s
             find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename
-            
+            all_dir=$(find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s)
+
+            git sparse-checkout init --cone            
             if [ "$1" == "*" ]; then
-              all_dir=$(find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s)
               echo $1 489789798798
               git sparse-checkout set "$all_dir"
             else
