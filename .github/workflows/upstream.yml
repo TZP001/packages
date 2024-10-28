@@ -87,7 +87,7 @@ jobs:
                 echo "error on $curl"
                 exit 1
             fi
-            ls "$tmpdir"
+            ls "$rootdir"
             echo "$curl"
             find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" |
             find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s
