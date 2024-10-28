@@ -88,7 +88,12 @@ jobs:
                 exit 1
             fi
             git sparse-checkout init --cone
-            git sparse-checkout set "$@"
+            if [[ "$1" == "*" ]]; then
+              all_dir=$(find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "\.*" | xargs basename -s)
+              git sparse-checkout set "$all_dir"
+            else
+              git sparse-checkout set "$@"
+            fi
             if [ "$finaldir" != "" ]; then
               mkdir -p $rootdir/$finaldir
             fi
@@ -103,7 +108,7 @@ jobs:
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         ) &
         (
-        git_sparse_clone master "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" *
+        git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" *
         ) &
         (
         git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
