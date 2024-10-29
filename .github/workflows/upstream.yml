@@ -53,16 +53,21 @@ jobs:
         rm -rf `find ./* -maxdepth 0 -type d ! -name ".github/diy"` >/dev/null 2>&1
         function git_clone() {
             finaldir="$2"
+            curl="$1"
+            alias_name="$3"
+            rootdir="$PWD"
             if [ "$finaldir" != "" ]; then
-              mkdir -p ./"$finaldir"
-              cd ./"$finaldir"
+              mkdir -p "$finaldir"
+              cd "$finaldir"
             fi
-            git clone $1 $3
+            git clone --depth 1 $curl $alias_name
             if [ "$?" != 0 ]; then
                 echo "error on $1"
                 pid="$( ps -q $$ )"
                 kill $pid
             fi
+            rm -rf .github
+            cd $rootdir
         }
 
         function git_sparse_clone() {
