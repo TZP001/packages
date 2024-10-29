@@ -78,28 +78,18 @@ jobs:
             if [ ${#branch} -lt 10 ]; then
                 git clone -b "$branch" --depth 1 --filter=blob:none --sparse -- "$curl" "$tmpdir"
                 cd "$tmpdir"
-                ls -l -d -a
             else
                 git clone --filter=blob:none --sparse -- "$curl" "$tmpdir"
                 cd "$tmpdir"
                 git checkout $branch
-                ls -l -d -a
             fi
             if [ "$?" != 0 ]; then
                 echo "error on $curl"
                 exit 1
             fi
-            ls -l -d -a
-            find . -type d
-            echo "$curl"
-            find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" |
-            find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s
-            find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename
-            all_dir=$(find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" | xargs basename -s)
-            git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}'
             git sparse-checkout init --cone            
             if [ "$1" == "*" ]; then
-              echo $1 489789798798
+              all_dir=$(git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}')
               git sparse-checkout set "$all_dir"
             else
               git sparse-checkout set "$@"
