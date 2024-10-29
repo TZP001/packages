@@ -89,7 +89,8 @@ jobs:
                 exit 1
             fi
             if [ "$1" == "*" ]; then
-              all_dir=$(git ls-tree -d HEAD --name-only | grep -v "\.github" | awk '{if(length != 0) print}')
+            ($(git ls-tree -d HEAD | grep -v "\.github" | grep -o '^blob [0-9]*\s*\(.*\)$' | awk '{print $2}'))
+              all_dir=($(git ls-tree -d HEAD | grep -v "\.github" | grep -o '^blob [0-9]*\s*\(.*\)$' | awk '{print $2}'))
               md_file="${all_dir[@]}"
             else
               md_file="$@"
