@@ -92,20 +92,16 @@ jobs:
 
             if [ "$1" == "*" ]; then
               all_dir=$(git ls-tree -d HEAD --name-only | grep -v "\.github" | awk '{if(length != 0) print}')
-              echo "---------------答复------------------"
-              echo "${all_dir[@]}"
-              echo "---------------开始------------------"
-              git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}'
-              echo "---------------结束------------------"
-              git sparse-checkout set "${all_dir[@]}"
+              md_file="${all_dir[@]}"
             else
-              git sparse-checkout set "$@"
+              md_file="$@"
             fi
+            git sparse-checkout set "${md_file[@]}"
             
             if [ "$finaldir" != "" ]; then
               mkdir -p $rootdir/$finaldir
             fi
-            mv -n $@ $rootdir/$finaldir/ || true
+            mv -n "${md_file[@]}" $rootdir/$finaldir/ || true
             cd $rootdir
         }
 
