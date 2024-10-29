@@ -68,7 +68,9 @@ jobs:
                 pid="$( ps -q $$ )"
                 kill $pid
             fi
+            ls
             md_file=$(ls | grep -v "\.github")
+            echo ${md_file[@]} 
             mv -n ${md_file[@]} $rootdir/$finaldir/$alias_name || true
             cd $rootdir
         }
