@@ -88,14 +88,14 @@ jobs:
                 echo "error on $curl"
                 exit 1
             fi
-            git sparse-checkout init --cone
-
             if [ "$1" == "*" ]; then
               all_dir=$(git ls-tree -d HEAD --name-only | grep -v "\.github" | awk '{if(length != 0) print}')
               md_file="${all_dir[@]}"
             else
               md_file="$@"
             fi
+            echo "${md_file[@]}"
+            git sparse-checkout init --cone
             git sparse-checkout set "${md_file[@]}"
             
             if [ "$finaldir" != "" ]; then
