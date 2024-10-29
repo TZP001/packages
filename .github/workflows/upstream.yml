@@ -52,7 +52,12 @@ jobs:
         git rm -r --cache * >/dev/null 2>&1 &
         rm -rf `find ./* -maxdepth 0 -type d ! -name ".github/diy"` >/dev/null 2>&1
         function git_clone() {
-            git clone --depth 1 $1 $2
+            finaldir="$2"
+            if [ "$finaldir" != "" ]; then
+              mkdir -p ./"$finaldir"
+              cd ./"$finaldir"
+            fi
+            git clone --depth 1 $1 $3
             if [ "$?" != 0 ]; then
                 echo "error on $1"
                 pid="$( ps -q $$ )"
@@ -94,7 +99,7 @@ jobs:
             else
               md_file="$@"
             fi
-            echo "${md_file[@]}"
+
             git sparse-checkout init --cone
             git sparse-checkout set ${md_file[@]}
             
@@ -107,8 +112,7 @@ jobs:
 
         (
         git_sparse_clone master "https://github.com/fw876/helloworld" "HelloWorld" "*"
-        git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-zerotier luci-app-aliddns \
-        luci-app-ddnsto luci-app-ddns luci-app-tencentddns ddnsto luci-app-ddns-go ddns-go
+        git_clone "https://github.com/animegasan/luci-app-quickstart" "Istoreos" luci-app-quickstart
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         ) &
         (
