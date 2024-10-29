@@ -72,6 +72,7 @@ jobs:
                 echo "远程仓库不存在或无法访问。"
                 return
             fi
+            echo "$@"
             branch="$1" curl="$2" finaldir="$3" && shift 3
             rootdir="$PWD"
             tmpdir="$(mktemp -d)" || exit 1
@@ -89,7 +90,7 @@ jobs:
             fi
             
             git sparse-checkout init --cone
-            echo $1
+            echo "$1"
             if [ "$1" == "*" ]; then
               echo "fadsfdsfasd"
               all_dir=$(git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}')
