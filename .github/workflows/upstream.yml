@@ -107,13 +107,13 @@ jobs:
         }
 
         (
-        git_sparse_clone master "https://github.com/fw876/helloworld" "HelloWorld" *
+        git_sparse_clone master "https://github.com/fw876/helloworld" "HelloWorld" "*"
         git_sparse_clone master "https://github.com/kiddin9/openwrt-packages" "NAT-DDNS" luci-app-zerotier luci-app-aliddns \
         luci-app-ddnsto luci-app-ddns luci-app-tencentddns ddnsto luci-app-ddns-go ddns-go
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         ) &
         (
-        git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" *
+        git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
         ) &
         (
         git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
