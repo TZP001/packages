@@ -161,8 +161,10 @@ jobs:
             cd $rootdir
         }
         (
-        git_clone "https://github.com/animegasan/luci-app-quickstart" "Istoreos" luci-app-quickstart
+        git_sparse_clone main "https://github.com/linkease/nas-packages-luci" "Istoreos" luci/luci-app-quickstart luci/luci-app-unishare
         git_sparse_clone main "https://github.com/Carseason/openwrt-packages" "Istoreos" luci/luci-app-routerdog  luci/luci-theme-inas network/services/routergo
+        git_sparse_clone master "https://github.com/linkease/nas-packages" "Istoreos" network/services/unishare network/services/quickstart
+              git_sparse_clone main "https://github.com/kiddin9/kwrt-packages" "Istoreos" luci-app-routerdog routergo
         ) &
         (
         git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
