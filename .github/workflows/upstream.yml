@@ -121,13 +121,52 @@ jobs:
             mv -n ${md_file[@]} $rootdir/$finaldir/ || true
             cd $rootdir
         }
+        
+        function git_sparse_clone_rename() {
+            trap 'rm -rf "$tmpdir"' EXIT
+            #!/bin/sh
+ 
+            REMOTE_URL="$2"
+             
+            if git ls-remote "$REMOTE_URL" > /dev/null 2>&1; then
+                echo "远程仓库存在。"
+            else
+                echo "远程仓库不存在或无法访问。"
+                return
+            fi
+            echo "$@"
+            branch="$1" curl="$2" finaldir="$3" addin="$4" alias_name="$5"
+            rootdir="$PWD"
+            tmpdir="$(mktemp -d)" || exit 1
+            if [ ${#branch} -lt 10 ]; then
+                git clone -b "$branch" --depth 1 --filter=blob:none --sparse -- "$curl" "$tmpdir"
+                cd "$tmpdir"
+            else
+                git clone --filter=blob:none --sparse -- "$curl" "$tmpdir"
+                cd "$tmpdir"
+                git checkout $branch
+            fi
+            if [ "$?" != 0 ]; then
+                echo "error on $curl"
+                exit 1
+            fi
 
+            git sparse-checkout init --cone
+            git sparse-checkout set $addin
+            
+            if [ "$finaldir" != "" ]; then
+              mkdir -p $rootdir/$finaldir
+            fi
+            mv -n $addin $rootdir/$finaldir/$alias_name || true
+            cd $rootdir
+        }
         (
         git_clone "https://github.com/animegasan/luci-app-quickstart" "Istoreos" luci-app-quickstart
         ) &
         (
         git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
+        git_sparse_clone master "https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns" "NAT-DDNS" tencentcloud_ddns
         ) &
         (
         git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
