@@ -88,16 +88,11 @@ jobs:
                 echo "error on $curl"
                 exit 1
             fi
-            echo "--------------这大风调度算----------------"
-            git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}'
-            echo "--------------这李丽丽丽丽----------------"
-            ls -l -d -a
-            echo "--------------这李接撒试试----------------"
             git sparse-checkout init --cone
-            echo "$1"
+
             if [ "$1" == "*" ]; then
-              echo "fadsfdsfasd"
-              all_dir=$(git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}')
+              all_dir=$(git ls-tree -d HEAD --name-only | grep -v "\.github" | awk '{if(length != 0) print}')
+              echo "---------------答复------------------"
               echo "${all_dir[@]}"
               echo "---------------开始------------------"
               git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}'
