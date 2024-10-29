@@ -162,6 +162,7 @@ jobs:
         }
         (
         git_clone "https://github.com/animegasan/luci-app-quickstart" "Istoreos" luci-app-quickstart
+        git_sparse_clone main "https://github.com/Carseason/openwrt-packages" "Istoreos" luci/luci-app-routerdog  luci/luci-theme-inas network/services/routergo
         ) &
         (
         git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
