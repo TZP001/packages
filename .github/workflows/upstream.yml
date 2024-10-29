@@ -111,16 +111,16 @@ jobs:
         }
 
         (
-        git_sparse_clone master "https://github.com/fw876/helloworld" "HelloWorld" "*"
         git_clone "https://github.com/animegasan/luci-app-quickstart" "Istoreos" luci-app-quickstart
-        git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         ) &
         (
         git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
+        git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
         ) &
         (
         git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
         git_sparse_clone main "https://github.com/xiaorouji/openwrt-passwall2" "HelloWorld" luci-app-passwall2
+        git_sparse_clone master "https://github.com/fw876/helloworld" "HelloWorld" "*"
         )
         
         
