@@ -101,7 +101,7 @@ jobs:
             if [ "$finaldir" != "" ]; then
               mkdir -p $rootdir/$finaldir
             fi
-            mv -n "${md_file[@]}" $rootdir/$finaldir/ || true
+            mv -n ${md_file[@]} $rootdir/$finaldir/ || true
             cd $rootdir
         }
 
