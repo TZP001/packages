@@ -87,13 +87,17 @@ jobs:
                 echo "error on $curl"
                 exit 1
             fi
-            git sparse-checkout init --cone            
+            
+            git sparse-checkout init --cone
+            echo $1
             if [ "$1" == "*" ]; then
+              echo "fadsfdsfasd"
               all_dir=$(git ls-tree -d HEAD --name-only | awk '{if(length != 0) print}')
-              git sparse-checkout set "$all_dir"
+              git sparse-checkout set "${all_dir[@]}"
             else
               git sparse-checkout set "$@"
             fi
+            
             if [ "$finaldir" != "" ]; then
               mkdir -p $rootdir/$finaldir
             fi
