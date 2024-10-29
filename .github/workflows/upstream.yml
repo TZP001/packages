@@ -87,7 +87,7 @@ jobs:
                 echo "error on $curl"
                 exit 1
             fi
-            ls -l -d */
+            ls -l -d -a
             find . -type d
             echo "$curl"
             find . -type d -maxdepth 1 | grep -v "^\.$" | grep -v "^\./\.*" |
