@@ -96,7 +96,7 @@ jobs:
             fi
             echo "${md_file[@]}"
             git sparse-checkout init --cone
-            git sparse-checkout set "${md_file[@]}"
+            git sparse-checkout set ${md_file[@]}
             
             if [ "$finaldir" != "" ]; then
               mkdir -p $rootdir/$finaldir
