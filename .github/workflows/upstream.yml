@@ -164,8 +164,9 @@ jobs:
         git_sparse_clone main "https://github.com/linkease/nas-packages-luci" "Istoreos" luci/luci-app-quickstart luci/luci-app-unishare
         git_sparse_clone main "https://github.com/Carseason/openwrt-packages" "Istoreos" luci/luci-app-routerdog  luci/luci-theme-inas network/services/routergo
         git_sparse_clone master "https://github.com/linkease/nas-packages" "Istoreos" network/services/unishare network/services/quickstart
-        git_sparse_clone main "https://github.com/kiddin9/kwrt-packages" "Istoreos" luci-app-routerdog routergo luci-app-store luci-lib-taskd luci-app-istorex
-        ) &
+        git_sparse_clone main "https://github.com/kiddin9/kwrt-packages" "Istoreos" luci-app-routerdog routergo luci-app-store luci-lib-taskd \
+        luci-app-istorex luci-theme-argon taskd luci-lib-xterm webdav2
+        ) & 
         (
         git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
