@@ -89,7 +89,7 @@ jobs:
                 exit 1
             fi
             if [ "$1" == "*" ]; then
-              all_dir=($(git ls-tree -d HEAD | grep -v "\.github" | awk '{print "\""$4"\""}'))
+              all_dir=($(git ls-tree -d HEAD | grep -v "\.github" | awk '{print ""$4""}'))
               md_file="${all_dir[@]}"
             else
               md_file="$@"
