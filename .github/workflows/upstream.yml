@@ -56,17 +56,20 @@ jobs:
             curl="$1"
             alias_name="$3"
             rootdir="$PWD"
+            tmpdir="$(mktemp -d)" || exit 1
             if [ "$finaldir" != "" ]; then
               mkdir -p "$finaldir"
               cd "$finaldir"
             fi
-            git clone --depth 1 $curl $alias_name
+            git clone --depth 1 -- $curl $tmpdir
+            cd $tmpdir
             if [ "$?" != 0 ]; then
                 echo "error on $1"
                 pid="$( ps -q $$ )"
                 kill $pid
             fi
-            rm -rf "$alias_name"/.github
+            md_file=$(ls | grep -v "\.github")
+            mv -n ${md_file[@]} $rootdir/$finaldir/$alias_name || true
             cd $rootdir
         }
 
