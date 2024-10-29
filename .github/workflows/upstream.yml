@@ -166,7 +166,7 @@ jobs:
         (
         git_sparse_clone main "https://github.com/Siriling/5G-Modem-Support" "5G-Modem-Support" "*"
         git_sparse_clone main "https://github.com/lwb1978/openwrt-gecoosac" "Gecoosac" gecoosac luci-app-gecoosac
-        git_sparse_clone master "https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns" "NAT-DDNS" tencentcloud_ddns
+        git_sparse_clone_rename master "https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns" "NAT-DDNS" tencentcloud_ddns luci-app-tencentddns
         ) &
         (
         git_sparse_clone master "https://github.com/vernesong/OpenClash" "HelloWorld" luci-app-openclash
