@@ -66,7 +66,7 @@ jobs:
                 pid="$( ps -q $$ )"
                 kill $pid
             fi
-            rm -rf .github
+            rm -rf "$alias_name"/.github
             cd $rootdir
         }
 
