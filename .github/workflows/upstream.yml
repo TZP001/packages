@@ -78,10 +78,12 @@ jobs:
             if [ ${#branch} -lt 10 ]; then
                 git clone -b "$branch" --depth 1 --filter=blob:none --sparse -- "$curl" "$tmpdir"
                 cd "$tmpdir"
+                ls -l -d -a
             else
                 git clone --filter=blob:none --sparse -- "$curl" "$tmpdir"
                 cd "$tmpdir"
                 git checkout $branch
+                ls -l -d -a
             fi
             if [ "$?" != 0 ]; then
                 echo "error on $curl"
