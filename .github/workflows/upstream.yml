@@ -58,9 +58,11 @@ jobs:
             rootdir="$PWD"
             tmpdir="$(mktemp -d)" || exit 1
             if [ "$finaldir" != "" ]; then
-              mkdir -p "$finaldir"
-              cd "$finaldir"
+              alias_dir="$finaldir/$alias_name"
+            else
+              alias_dir="$alias_name"
             fi
+            mkdir -p "$finaldir/$alias_name"
             git clone --depth 1 -- $curl $tmpdir
             cd $tmpdir
             if [ "$?" != 0 ]; then
@@ -71,7 +73,7 @@ jobs:
             ls
             md_file=$(ls | grep -v "\.github")
             echo ${md_file[@]} 
-            mv -n ${md_file[@]} $rootdir/$finaldir/$alias_name || true
+            mv -n ${md_file[@]} $rootdir/$alias_dir || true
             cd $rootdir
         }
 
