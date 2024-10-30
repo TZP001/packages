@@ -100,8 +100,8 @@ endchoice
 
 choice
 	prompt "Shadowsocks Server Selection"
-	default PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Server if aarch64
-	default PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server if i386||x86_64||arm
+	default PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Server if aarch64||i386||x86_64||arm
+	default PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server
 	default PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_NONE_Server
 
 	config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_NONE_Server
