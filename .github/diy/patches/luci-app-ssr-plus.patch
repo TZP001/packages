@@ -1,5 +1,3 @@
---- a/luci-app-ssr-plus/Makefile
-+++ b/HelloWorld/luci-app-ssr-plus/Makefile
 @@ -51,9 +51,6 @@
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun:kcptun-client \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy:naiveproxy \
@@ -10,19 +8,15 @@
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Client:shadowsocks-rust-sslocal \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Server:shadowsocks-rust-ssserver \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Simple_Obfs:simple-obfs \
-@@ -63,7 +60,10 @@
+@@ -63,7 +60,6 @@
  	+PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Libev_Server:shadowsocksr-libev-ssr-server \
  	+PACKAGE_$(PKG_NAME)_INCLUDE_Trojan:trojan
  
 -
-+PKG_CONFIG_DEPENDS:= \
-+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client \
-+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Server \
-+	
  define Package/$(PKG_NAME)/config
  select PACKAGE_luci-lib-ipkg if PACKAGE_$(PKG_NAME)
  
-@@ -91,7 +91,10 @@
+@@ -91,7 +87,10 @@
  
  	config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Libev_Client
  	bool "Shadowsocks-libev"
@@ -34,7 +28,7 @@
  	config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Client
  	bool "Shadowsocks-rust"
  	depends on aarch64||arm||i386||mips||mipsel||x86_64
-@@ -106,10 +109,12 @@
+@@ -106,10 +105,12 @@
  
  	config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_NONE_Server
  	bool "None"
@@ -49,4 +43,3 @@
  	config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust_Server
  	bool "Shadowsocks-rust"
  	depends on aarch64||arm||i386||mips||mipsel||x86_64
-
